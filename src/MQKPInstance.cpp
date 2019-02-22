@@ -25,10 +25,17 @@ MQKPInstance::MQKPInstance() {
 MQKPInstance::~MQKPInstance() {
 	//TODO complete
 }
-
+int MQKPInstance::getNumObjs()
+{
+	return this->_numObjs;
+}
+int MQKPInstance::getNumKnapsacks()
+{
+	return this->_numKnapsacks;
+}
 double MQKPInstance::getMaxCapacityViolation(MQKPSolution &solution) {
 
-	double *sumWeights = new double[this->_numKnapsacks + 1];
+	double *sumWeights = new double[this->_numKnapsacks +1];
 
 	for (int j = 1; j <= this->_numKnapsacks; j++) {
 		sumWeights[j] = 0;
@@ -66,9 +73,9 @@ double MQKPInstance::getMaxCapacityViolation(MQKPSolution &solution) {
 double MQKPInstance::getSumProfits(MQKPSolution &solution) {
 
 	double sumProfits = 0.;
-	for(int i=0; i<(this->_numObjs-2);i++)
+	for(int i=0; i<(this->_numObjs-1);i++)
 	{
-		for(int j=i+1;j<(this->_numObjs-1);j++)
+		for(int j=i+1;j<(this->_numObjs);j++)
 		{
 			if(solution._sol[i]==solution._sol[j])
 			{

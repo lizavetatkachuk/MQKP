@@ -42,7 +42,8 @@ protected:
 	 */
 
 public:
-
+int getNumObjs();
+int getNumKnapsacks();
 	/**
 	 * Default constructor
 	 */

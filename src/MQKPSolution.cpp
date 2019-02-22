@@ -13,12 +13,13 @@
 #include "MQKPInstance.h"
 
 MQKPSolution::MQKPSolution(MQKPInstance &instance) {
-	this->_sol= new int [instance._numObjs];
-	for(int i=0;i<instance._numObjs;i++)
+	int size= instance.getNumObjs();
+	this->_sol= new int [size];
+	for(int i=0;i<size;i++)
 	{
 		this->_sol[i]=0;
 	}
-	this->_numObjs=instance._numObjs;
+	this->_numObjs=size;
 	this->_fitness=0;
 	//	TODO Complete initializing the properties. Initially, all the objects are out of any knapsack (=0)
 }
