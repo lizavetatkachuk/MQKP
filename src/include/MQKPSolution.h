@@ -29,7 +29,9 @@ class MQKPInstance;
  * in one of the M knapsacks and 0 for those non included in any knapsack.
  */
 class MQKPSolution {
-protected:
+//protected:
+public:
+
 	int *_sol;
 	int _numObjs;
 	double _fitness;
@@ -39,7 +41,7 @@ protected:
 	 * _fitness double value with quality of the solution.
 	 */
 
-public:
+
 	/**
 	 * Constructor
 	 * @param[in] instance Reference to an object with the information of the MQKP instance.

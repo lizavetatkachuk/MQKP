@@ -14,11 +14,11 @@
 
 MQKPInstance::MQKPInstance() {
 	//TODO complete initializing the properties
-		 _numKnapsacks=0;
-		 _numObjs=0;
-		 _profits=nullptr;
-		 _weights=nullptr;
-		 _capacities=nullptr;
+		 this->_numKnapsacks=0;
+		 this->_numObjs=0;
+		 this->_profits=nullptr;
+		 this->_weights=nullptr;
+		 this->_capacities=nullptr;
 
 }
 

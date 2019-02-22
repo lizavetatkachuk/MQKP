@@ -13,19 +13,29 @@
 #include "MQKPInstance.h"
 
 MQKPSolution::MQKPSolution(MQKPInstance &instance) {
-
-	//TODO Complete initializing the properties. Initially, all the objects are out of any knapsack (=0)
+	this->_sol= new int [instance._numObjs];
+	for(int i=0;i<instance._numObjs;i++)
+	{
+		this->_sol[i]=0;
+	}
+	this->_numObjs=instance._numObjs;
+	this->_fitness=0;
+	//	TODO Complete initializing the properties. Initially, all the objects are out of any knapsack (=0)
 }
 
 MQKPSolution::~MQKPSolution() {
+	delete []this->_sol;
 	//TODO complete
 }
 
 void MQKPSolution::putObjectIn(int object, int knapsack){
+	this->_sol[object]=knapsack;
 	//TODO complete the function
 }
 
 int MQKPSolution::whereIsObject(int object){
+	int knapsack= this->_sol[object];
+	return knapsack;
 	//TODO complete the function
 }
 
