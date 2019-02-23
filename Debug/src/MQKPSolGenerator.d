@@ -1,14 +1,8 @@
 src/MQKPSolGenerator.o: ../src/MQKPSolGenerator.cpp \
- ../src/include/MQKPSolGenerator.h ../src/include/MQKPInstance.h \
- ../src/include/MQKPSolution.h ../src/include/MQKPInstance.h \
- ../src/include/MQKPSolution.h
+ ../src/MQKPSolGenerator.h ../src/MQKPInstance.h ../src/MQKPSolution.h
 
-../src/include/MQKPSolGenerator.h:
+../src/MQKPSolGenerator.h:
 
-../src/include/MQKPInstance.h:
+../src/MQKPInstance.h:
 
-../src/include/MQKPSolution.h:
-
-../src/include/MQKPInstance.h:
-
-../src/include/MQKPSolution.h:
+../src/MQKPSolution.h:

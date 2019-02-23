@@ -1,14 +1,8 @@
-src/MQKPEvaluator.o: ../src/MQKPEvaluator.cpp \
- ../src/include/MQKPSolution.h ../src/include/MQKPInstance.h \
- ../src/include/MQKPInstance.h ../src/include/MQKPEvaluator.h \
- ../src/include/MQKPSolution.h
+src/MQKPEvaluator.o: ../src/MQKPEvaluator.cpp ../src/MQKPSolution.h \
+ ../src/MQKPInstance.h ../src/MQKPEvaluator.h
 
-../src/include/MQKPSolution.h:
+../src/MQKPSolution.h:
 
-../src/include/MQKPInstance.h:
+../src/MQKPInstance.h:
 
-../src/include/MQKPInstance.h:
-
-../src/include/MQKPEvaluator.h:
-
-../src/include/MQKPSolution.h:
+../src/MQKPEvaluator.h:

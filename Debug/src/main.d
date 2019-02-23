@@ -1,18 +1,12 @@
-src/main.o: ../src/main.cpp ../src/include/MQKPEvaluator.h \
- ../src/include/MQKPInstance.h ../src/include/MQKPSolution.h \
- ../src/include/MQKPInstance.h ../src/include/MQKPSolGenerator.h \
- ../src/include/MQKPSolution.h ../src/include/Timer.h
+src/main.o: ../src/main.cpp ../src/MQKPEvaluator.h ../src/MQKPInstance.h \
+ ../src/MQKPSolution.h ../src/MQKPSolGenerator.h ../src/Timer.h
 
-../src/include/MQKPEvaluator.h:
+../src/MQKPEvaluator.h:
 
-../src/include/MQKPInstance.h:
+../src/MQKPInstance.h:
 
-../src/include/MQKPSolution.h:
+../src/MQKPSolution.h:
 
-../src/include/MQKPInstance.h:
+../src/MQKPSolGenerator.h:
 
-../src/include/MQKPSolGenerator.h:
-
-../src/include/MQKPSolution.h:
-
-../src/include/Timer.h:
+../src/Timer.h:

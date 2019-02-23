@@ -1,3 +1,3 @@
-src/Timer.o: ../src/Timer.cpp ../src/include/Timer.h
+src/Timer.o: ../src/Timer.cpp ../src/Timer.h
 
-../src/include/Timer.h:
+../src/Timer.h:

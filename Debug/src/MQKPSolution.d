@@ -1,8 +1,6 @@
-src/MQKPSolution.o: ../src/MQKPSolution.cpp ../src/include/MQKPSolution.h \
- ../src/include/MQKPInstance.h ../src/include/MQKPInstance.h
+src/MQKPSolution.o: ../src/MQKPSolution.cpp ../src/MQKPSolution.h \
+ ../src/MQKPInstance.h
 
-../src/include/MQKPSolution.h:
+../src/MQKPSolution.h:
 
-../src/include/MQKPInstance.h:
-
-../src/include/MQKPInstance.h:
+../src/MQKPInstance.h:

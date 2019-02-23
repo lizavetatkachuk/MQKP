@@ -222,7 +222,6 @@ void free3Darray(vector< vector <vector<T>*>*> &array){
  * of the best solution found from the beginning to one given iteration.
  */
 int main(int argc, char **argv) {
-
 	if (argc < 3 || (argc % 2) != 1){
 		cout << argv[0] << " (<problem instance files> <numKnapsacks>)+" << endl;
 		return 0;

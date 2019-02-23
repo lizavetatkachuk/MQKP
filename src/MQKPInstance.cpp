@@ -11,7 +11,10 @@
 
 #include "MQKPInstance.h"
 #include "MQKPSolution.h"
-
+#include <fstream>
+#include<iostream>
+#include<stdlib.h>
+#include<string.h>
 MQKPInstance::MQKPInstance() {
 	//TODO complete initializing the properties
 		 this->_numKnapsacks=0;
@@ -24,7 +27,13 @@ MQKPInstance::MQKPInstance() {
 
 MQKPInstance::~MQKPInstance() {
 	//TODO complete
+	delete[]_weights;
+	delete[]_capacities;
+	for(int i=0;i<_numObjs;i++)
+		delete[]_profits[i];
+	delete[]_profits;
 }
+
 int MQKPInstance::getNumObjs()
 {
 	return this->_numObjs;
@@ -43,7 +52,7 @@ double MQKPInstance::getMaxCapacityViolation(MQKPSolution &solution) {
 
 	for (int i = 0; i < this->_numObjs; i++) {
 
-		if(solution._sol[i]!=0)
+		if(solution._sol[i] > 0)
 		{
 			sumWeights[solution._sol[i]]+=this->_weights[i];
 		}
@@ -56,9 +65,9 @@ double MQKPInstance::getMaxCapacityViolation(MQKPSolution &solution) {
 	double maxCapacityViolation = 0; //We initialize maximum violation to 0, meaning that there are no violations.
 
 	for (int j = 1; j <= this->_numKnapsacks; j++) {
-		if(int a=sumWeights[j]-(this->_capacities[j])>0)
+		if(int a=sumWeights[j]-(this->_capacities[j])>maxCapacityViolation)
 		{
-			maxCapacityViolation+=a;
+			maxCapacityViolation=a;
 		}
 		/*TODO Complete
 		 * 1. Obtain the violation for the j-th knapsack
@@ -75,14 +84,16 @@ double MQKPInstance::getSumProfits(MQKPSolution &solution) {
 	double sumProfits = 0.;
 	for(int i=0; i<(this->_numObjs-1);i++)
 	{
-		for(int j=i+1;j<(this->_numObjs);j++)
-		{
-			if(solution._sol[i]==solution._sol[j])
+		if(solution._sol[i] >= 0){
+			sumProfits+=this->_profits[i][i];
+			for(int j=i+1;j<(this->_numObjs);j++)
 			{
-				sumProfits+=this->_profits[i][j];
+				if(solution._sol[i]==solution._sol[j])
+				{
+					sumProfits+=this->_profits[i][j];
+				}
 			}
 		}
-		sumProfits+=this->_profits[i][i];
 	}
 	/*TODO Complete
 	 * Double loop for each pair of objects
@@ -95,6 +106,69 @@ double MQKPInstance::getSumProfits(MQKPSolution &solution) {
 }
 
 void MQKPInstance::readInstance(char *filename, int numKnapsacks) {
+
+	using std::cout;
+	using std::cin;
+	using std::cerr;
+	using std::endl;
+
+	_numKnapsacks=numKnapsacks;
+	std::ifstream resourse;
+	resourse.open(filename);
+
+	if(!resourse.is_open()) {
+		cerr << "something goes wrong with file..." << endl;
+		exit(1);
+	}
+
+	std::string data;
+	getline(resourse, data);//trash - name of the file
+	getline(resourse,data);//number of objs
+	_numObjs=atoi(data.c_str());
+	_profits=new double*[_numObjs];
+
+	for(int i=0; i<_numObjs;i++)
+        	_profits[i]=new double [_numObjs];
+
+	for(int i=0; i<_numObjs;i++){
+		 resourse>>_profits[i][i];//first string is diagonal
+
+}
+
+
+
+	for(int i=0;i<_numObjs-1;i++){//2 string of matrix, 3 string, ...
+     	 	for (int j=i+1; j<_numObjs; j++) //has n-i-1 long
+            	{
+			double tmp;	//get a number
+            		resourse>>tmp;
+						// std::cout << tmp << std::endl;
+            		_profits[i][j]=tmp;	//and put it mirror from the diagonal
+            		_profits[j][i]=tmp;
+        	}
+		}
+
+
+ 	_weights=new double[_numObjs];
+ 	getline(resourse, data);	//shifting until data...
+	getline(resourse, data);
+	getline(resourse, data);
+	getline(resourse, data);	//here we are, weights
+	double sum=0;
+
+	for(int i=0; i<_numObjs;i++)
+	{
+       		resourse>>_weights[i];
+        	sum+=_weights[i];	//meanwhile finding the sum of weights
+    	}
+
+	resourse.close();	//we've done with file
+    	sum*=0.8;		//capacity of all knapsacks (from the initial conditions)
+    	sum/=_numKnapsacks;
+    	_capacities=new double[_numObjs];
+
+	for(int i=0; i<_numObjs;i++)
+        	_capacities[i]=sum;
 
 	/*
 	 * TODO Complete this function:
